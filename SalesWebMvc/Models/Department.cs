@@ -28,10 +28,7 @@
 
         public double AllSales(DateTime initial, DateTime final)
         {
-            return
-                SellerList.Sum(seller => seller.TotalSales(initial, final));
-
-
+            return SellerList.Sum(seller => seller.TotalSales(initial, final));
         }
     }
 }
