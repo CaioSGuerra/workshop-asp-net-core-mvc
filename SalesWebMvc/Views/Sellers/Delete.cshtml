@@ -1,0 +1,46 @@
+﻿@model SalesWebMvc.Models.Seller
+
+@{
+}
+
+<h2>Delete</h2>
+
+<h3>Are your sure you want to delete this?</h3>
+
+<div>
+    <h4>Seller</h4>
+    <hr />
+
+    <div class="ms-4" style="width: fit-content;">
+        <div class="d-flex mb-2">
+            <strong class="me-2 text-end" style="width: 200px;">
+                @Html.DisplayNameFor(m => m.Name)
+            </strong>
+            <span>@Html.DisplayFor(m => m.Name)</span>
+        </div>
+        <div class="d-flex mb-2">
+            <strong class="me-2 text-end" style="width: 200px;">
+                @Html.DisplayNameFor(m => m.Email)
+            </strong>
+            <span>@Html.DisplayFor(m => m.Email)</span>
+        </div>
+        <div class="d-flex mb-2">
+            <strong class="me-2 text-end" style="width: 200px;">
+                @Html.DisplayNameFor(m => m.BirthDate)
+            </strong>
+            <span>@Html.DisplayFor(m => m.BirthDate)</span>
+        </div>
+        <div class="d-flex mb-2">
+            <strong class="me-2 text-end" style="width: 200px;">
+                @Html.DisplayNameFor(m => m.BaseSalary)
+            </strong>
+            <span>@Html.DisplayFor(m => m.BaseSalary)</span>
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Back to List</a>
+    </form>
+
+</div>
