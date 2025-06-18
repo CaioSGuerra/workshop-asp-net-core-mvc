@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
 using SalesWebMvc.Services;
+using System.Globalization;
+
 namespace SalesWebMvc
 {
     public class Program
@@ -15,7 +18,7 @@ namespace SalesWebMvc
                 options.UseMySql(
                     builder.Configuration.GetConnectionString("SalesWebMvcContext")
                         ?? throw new InvalidOperationException("Connection string 'SalesWebMvcContext' not found."),
-                    new MySqlServerVersion(new Version(8, 0, 36)), // ajuste para a versão do seu MySQL
+                    new MySqlServerVersion(new Version(8, 0, 36)),
                     mysqlOptions => mysqlOptions.MigrationsAssembly("SalesWebMvc")
                 ));
 
@@ -27,6 +30,16 @@ namespace SalesWebMvc
             builder.Services.AddScoped<DepartmentService>();
 
             var app = builder.Build();
+
+            var enUS = new CultureInfo("en-US");
+            var localizationOption = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(enUS),
+                SupportedCultures = new List<CultureInfo> { enUS },
+                SupportedUICultures = new List<CultureInfo> { enUS }
+            };
+
+            app.UseRequestLocalization(localizationOption);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
